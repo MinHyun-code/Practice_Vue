@@ -15,7 +15,7 @@
 						<th role="columnheader" scope="col" class="text-center" style="width: 70px;">작성자</th>
 					</tr>
 				</thead>
-				<transition-group name="searchList" tag="tbody">
+				<transition-group name="searchList" tag="tbody" class="table_item">
                     <tr role="row"  v-for="(item) in boardList" :key="item.board_num" style="cursor:pointer" @click="detailPop(item)">
                         <td role="cell">{{item.board_title}}</td>
                         <td role="cell" class="text-center">{{item.board_date}}</td>
@@ -24,6 +24,8 @@
 					</tr>
 				</transition-group>
 			</table>
+			<div>
+</div>
 			<a class="btn btn-sm btn-outline-secondary"  type="submit" v-on:click="boardPop()">등록</a>
 		<!-- paging start -->
 			<b-pagination align="center" :total-rows="totalRows" v-model="currentPage" :per-page="10" v-on:click="getBoardList(currentPage)" style="margin-top: revert;"  v-show="noPage"/>
@@ -44,7 +46,7 @@
 			boardList: [],
 			totalRows : 0,
 			currentPage: 1,
-			limit: 1000,
+			limit: 10,
 			noPage:true,
 			searchValue1:'',
 		}),
@@ -67,10 +69,10 @@
 				})
 			},
 			detailPop(items){
-				console.log(items);
 				this.$store.commit('setBoardData', items);
-				this.$emit('show-modal', "updateBoard");
-			}
+				this.$store.commit('modalBoard_TF', true);
+			},
+
 		},
 		mounted(currentPage) {
 			this.getBoardTotalCnt();
@@ -81,6 +83,8 @@
 
 
 <style scoped>
-
+.searchList-leave-active, .searchList-leave-to {
+	animation: fadeInLeft 0s;
+}
 
 </style>

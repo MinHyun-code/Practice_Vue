@@ -1,8 +1,18 @@
 import { createStore } from "vuex";
 
 const store = createStore({
-  state: {},
+  state: {
+    boardData: [],
+    boardDate: "",
+    boardNum: 0,
+    boardReadCnt: 0,
+    boardTitle: "",
+    regId: "",
+    modalBoard_tf: false,
+  },
+  computed: {},
   mutations: {
+    // 게시판 데이터 저장
     setBoardData: function (state, data) {
       if (data != undefined) {
         state.boardData = data;
@@ -12,6 +22,10 @@ const store = createStore({
         state.boardTitle = data.board_title;
         state.regId = data.reg_id;
       }
+    },
+    // 게시판 팝업 여부
+    modalBoard_TF: function (state, data) {
+      state.modalBoard_tf = data;
     },
   },
 });

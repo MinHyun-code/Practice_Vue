@@ -1,40 +1,31 @@
 <template>
   <div id="app">
     <router-view/>
-    <component :is="layout" ref="layout">
-        <transition name="fade" mode="out-in">
-            <router-view v-on:show-modal="showModal" v-on:hide-modal="hideModal" v-on:move-leftbar="moveLeftbar" v-on:sidebar-refresh="sidebarRefresh"></router-view>
-        </transition>
-    </component>
+    <component :is="layout" ref="layout"/>
+    <Modal v-if="this.$store.state.modalBoard_tf">
+      <Content msg="Hello Vue in CodeSandbox!" />
+    </Modal>
   </div>
 </template>
 
 <script>
 
 const default_layout = "default";
+import Content from "@/components/common/Content.vue";
+import Modal from '@/components/common/Modal.vue'; //import Modal 추가
 
 export default {
   name: 'app',
   components: {
+    Content,
+    Modal
   },    
   computed: {
     layout() {
       return (this.$route.meta.layout || default_layout) + '-layout';
-    }
+    },
   },
   methods: {
-        showModal(modalRefId){
-            this.$refs.layout.showModal(modalRefId);
-        },
-        hideModal(modalRefId){
-            this.$refs.layout.hideModal(modalRefId);
-        },
-        moveLeftbar(menuIdPath){
-            this.$refs.layout.moveLeftbar(menuIdPath);
-        },
-        sidebarRefresh(variant){
-            this.$refs.layout.sidebarRefresh(variant);
-        }
     }
 }
 </script>
@@ -47,6 +38,30 @@ export default {
   .table {
     font-size: 12px;
   }
-  
 
+@keyframes fadeInLeft {
+      0% {
+          opacity: 0;
+          transform: translate3d(-5%, 0, 0);
+      }
+      to {
+          opacity: 1;
+          transform: translateZ(0);
+      }
+}
+
+@keyframes fadeOutLeft {
+        0% {
+          opacity: 1;
+          transform: translateZ(0);
+        }
+        to {
+          opacity: 0;
+          transform: translate3d(-5%, 0, 0);
+        }
+}
+
+table tr{
+  animation: fadeInLeft 0.8s;
+}
 </style>
