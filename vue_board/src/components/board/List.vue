@@ -30,6 +30,7 @@
 		<!-- paging end -->
 		</div>
 	</main>
+	
 </template>
 
 <script>
@@ -66,6 +67,7 @@
 				})
 			},
 			detailPop(items){
+				console.log(items);
 				this.$store.commit('setBoardData', items);
 				this.$emit('show-modal', "updateBoard");
 			}
