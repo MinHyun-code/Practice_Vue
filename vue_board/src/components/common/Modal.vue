@@ -1,9 +1,8 @@
 <template>
-  <div class="modal fade show d-block" style="margin-top: 10%">
+  <div class="modal fade show d-block" style="margin-top: 6%">
     <div class="modal-lg">
-      <div class="overlay" @click="this.$store.commit('modalBoard_TF', false)"></div>
+      <div class="overlay" @click="this.$store.commit('modalBoardDetail_TF', false); this.$store.commit('modalBoardInsert_TF', false)"></div>
       <div class="modal-card">
-        {{this.$store.state.boardData}}
         <slot />
       </div>
     </div>
@@ -37,9 +36,8 @@ export default {
   position: relative;
   max-width: 60%;
   margin: auto;
-  padding: 20px;
   background-color: white;
-  min-height: 500px;
+  min-height: 700px;
   z-index: 10;
   opacity: 1;
   animation: fadeInLeft 0.8s;

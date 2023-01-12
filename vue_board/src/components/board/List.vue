@@ -6,6 +6,15 @@
 					<h1 class="h5 mb-0 text-white lh-1" style="font-weight: bold;">게시판</h1>
 				</div>
 			</div>
+			<div style="float: right; margin-bottom: 10px;">
+				<select class="form-control" style="width: 110px; display: inline-block; margin-right: 10px;">
+					<option> -- Select -- </option>
+					<option>제목</option>
+					<option>작성자</option>
+				</select>
+				<input class="form-control me-2" type="text" style="width: 180px; display: inline-block;"/>
+				<button class="btn btn-outline-success" type="submit" style="margin-bottom: 3px;">Search</button>
+			</div>
 			<table class="table b-table table-striped table-hover table-bordered border mb-0">
 				<thead role="rowgroup">
 					<tr role="row">
@@ -16,7 +25,7 @@
 					</tr>
 				</thead>
 				<transition-group name="searchList" tag="tbody" class="table_item">
-                    <tr role="row"  v-for="(item) in boardList" :key="item.board_num" style="cursor:pointer" @click="detailPop(item)">
+                    <tr role="row"  v-for="(item) in boardList" :key="item.board_num" style="cursor:pointer" @click="boardDetailPop(item.board_num)">
                         <td role="cell">{{item.board_title}}</td>
                         <td role="cell" class="text-center">{{item.board_date}}</td>
                         <td role="cell" class="text-center">{{item.board_read_cnt}}</td>
@@ -26,7 +35,7 @@
 			</table>
 			<div>
 </div>
-			<a class="btn btn-sm btn-outline-secondary"  type="submit" v-on:click="boardPop()">등록</a>
+			<a class="btn btn-sm btn-outline-secondary"  type="submit" v-on:click="boardInsertPop()">등록</a>
 		<!-- paging start -->
 			<b-pagination align="center" :total-rows="totalRows" v-model="currentPage" :per-page="10" v-on:click="getBoardList(currentPage)" style="margin-top: revert;"  v-show="noPage"/>
 		<!-- paging end -->
@@ -49,12 +58,14 @@
 			limit: 10,
 			noPage:true,
 			searchValue1:'',
+			searchValue2:'',
+
 		}),
-		methods:{ 
+		methods: { 
 			getBoardTotalCnt() {
 				const form = new FormData();
 				form.append('searchValue1', this.searchValue1);
-				this.$axios.post('/api/boardCnt', form).then(res => {
+				this.$axios.post('/api/board/cnt', form).then(res => {
 					this.totalRows = res.data;
 				})
 			},
@@ -68,23 +79,33 @@
 					this.boardList = res.data;
 				})
 			},
-			detailPop(items){
-				this.$store.commit('setBoardData', items);
-				this.$store.commit('modalBoard_TF', true);
+			boardDetailPop(board_num){
+				const form = new FormData();
+				this.$store.commit('setBoardData', '');
+				form.append('board_num', board_num);
+				this.$axios.post('/api/board/detail', form).then(res => {
+					this.$store.commit('setBoardData', res.data);
+				})
+				this.$store.commit('modalBoardDetail_TF', true);
 			},
-
+			boardInsertPop() {
+				this.$store.commit('modalBoardInsert_TF', true);
+			}
 		},
 		mounted(currentPage) {
 			this.getBoardTotalCnt();
 			this.getBoardList(currentPage);
+		}, 
+		watch() {
+			
 		}
 	}
 </script>
 
 
 <style scoped>
-.searchList-leave-active, .searchList-leave-to {
+/* .searchList-leave-active, .searchList-leave-to {
 	animation: fadeInLeft 0s;
-}
+} */
 
 </style>

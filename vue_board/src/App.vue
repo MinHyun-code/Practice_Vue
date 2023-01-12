@@ -2,8 +2,8 @@
   <div id="app">
     <router-view/>
     <component :is="layout" ref="layout"/>
-    <Modal v-if="this.$store.state.modalBoard_tf">
-      <Content msg="Hello Vue in CodeSandbox!" />
+    <Modal v-if="this.$store.state.modal_tf">
+      <Content/>
     </Modal>
   </div>
 </template>
@@ -31,37 +31,46 @@ export default {
 </script>
 
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    }
 
-  .table {
-    font-size: 12px;
-  }
+    .table {
+      font-size: 12px;
+    }
 
-@keyframes fadeInLeft {
-      0% {
-          opacity: 0;
-          transform: translate3d(-5%, 0, 0);
-      }
-      to {
-          opacity: 1;
-          transform: translateZ(0);
-      }
-}
-
-@keyframes fadeOutLeft {
+  @keyframes fadeInLeft {
         0% {
-          opacity: 1;
-          transform: translateZ(0);
+            opacity: 0;
+            transform: translate3d(-5%, 0, 0);
         }
         to {
-          opacity: 0;
-          transform: translate3d(-5%, 0, 0);
+            opacity: 1;
+            transform: translateZ(0);
         }
-}
+  }
 
-table tr{
-  animation: fadeInLeft 0.8s;
-}
+  @keyframes fadeOutLeft {
+          0% {
+            opacity: 1;
+            transform: translateZ(0);
+          }
+          to {
+            opacity: 0;
+            transform: translate3d(-5%, 0, 0);
+          }
+  }
+
+  table tr{
+    animation: fadeInLeft 0.8s;
+  }
+
+  .btn {
+    margin-bottom: 3px;
+  }
+
+  .form-control {
+    width: 180px;
+  }
+
 </style>

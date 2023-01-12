@@ -2,13 +2,15 @@ import { createStore } from "vuex";
 
 const store = createStore({
   state: {
-    boardData: [],
+    boardData: "",
     boardDate: "",
     boardNum: 0,
     boardReadCnt: 0,
     boardTitle: "",
     regId: "",
-    modalBoard_tf: false,
+    modal_tf: false,
+    modalBoardDetail_tf: false,
+    modalBoardInsert_tf: false,
   },
   computed: {},
   mutations: {
@@ -23,9 +25,17 @@ const store = createStore({
         state.regId = data.reg_id;
       }
     },
-    // 게시판 팝업 여부
-    modalBoard_TF: function (state, data) {
-      state.modalBoard_tf = data;
+    // 게시판 상세 팝업 여부
+    modalBoardDetail_TF: function (state, data) {
+      state.modal_title = "게시판 상세보기";
+      state.modal_tf = data;
+      state.modalBoardDetail_tf = data;
+    },
+    // 게시판 등록 팝업 여부
+    modalBoardInsert_TF: function (state, data) {
+      state.modal_title = "게시판 등록";
+      state.modal_tf = data;
+      state.modalBoardInsert_tf = data;
     },
   },
 });
