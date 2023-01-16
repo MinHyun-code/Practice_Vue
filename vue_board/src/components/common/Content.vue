@@ -1,14 +1,21 @@
 <template>
-  <div class="content">
-    <header class="modal_header">
+  <div class="content" ref="refContent">
+    <header class="modal_header" @dblclick="HeaderClick()">
       <span class="modal_title">{{ this.$store.state.modal_title }}</span>
-      <div class="close_btn" id="close_btn">x</div>
+      <div class="close_btn" id="close_btn" @click="modalFalse()">x</div>
     </header>
     <div v-if="this.$store.state.modalBoardDetail_tf">
-      <h2>상세보기</h2>
-      <h2>{{ this.$store.state.boardData.board_title }}</h2>
       <div>
-        {{ this.$store.state.boardData }}
+        <Markdown
+          :source="boardContent"
+          style="
+            width: 96%;
+            float: right;
+            overflow: auto;
+            height: 50vh;
+            margin: 2%;
+          "
+        />
       </div>
     </div>
 
@@ -25,8 +32,7 @@
         ></textarea>
         <Markdown
           :source="boardContent"
-          style="
-            width: 47%;
+          style="width: 47%;
             float: right;
             overflow: auto;
             height: 50vh;
@@ -34,25 +40,29 @@
           "
         />
       </div>
-    </div>
-    <a
+      <a
       class="btn btn-sm btn-outline-secondary"
       type="submit"
       v-on:click="boardInsert()"
       >등록</a
     >
+    </div>
   </div>
 </template>
 
 <script>
 import Markdown from "vue3-markdown-it";
 import MarkdownItStrikethroughAlt from "markdown-it-strikethrough-alt";
-import toastr from "vue-toastr";
 
 export default {
   name: "Content",
   components: {
     Markdown,
+  },
+  computed: {
+    storeBoardContent: function() {
+      return this.$store.state.boardContent;
+    },
   },
   data() {
     return {
@@ -72,31 +82,45 @@ export default {
     textChange(event) {
       this.boardContent = event.target.value;
     },
-
+    // 모달창 닫기
+    modalFalse() {
+      this.$store.commit('modalBoardDetail_TF', false); 
+      this.$store.commit('modalBoardInsert_TF', false); 
+      this.$store.commit('setBoardData', '');
+    },
     boardInsert() {
       const form = new FormData();
       form.append("board_title", this.boardTitle);
       form.append("board_content", this.boardContent);
       form.append("reg_id", "a");
-      this.$axios.post("/api/board/insert", form).then((res) => {
-        toastr.success(res);
+      this.$axios.post("/api/board/insert", form).then(() => {
         this.$store.commit("modalBoardDetail_TF", false);
         this.$store.commit("modalBoardInsert_TF", false);
+        this.$store.commit('setBoardListCall', "Y");
       });
     },
+    // 헤더 더블 클릭
+    HeaderClick() {
+        this.$store.commit("modalFull");
+        console.log(this.boardContent);
+    }
   },
+  watch: {    
+    storeBoardContent(){
+      this.boardContent = this.$store.state.boardContent;
+    }
+  }
 };
 </script>
 
 <style scoped>
 .modal_header {
-  height: 10%;
+  height: 7vh;
   padding: 20px;
+  line-height: 27px;
   display: flex;
   justify-content: space-between;
   background-color: #e7e5e5;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .modal_title {

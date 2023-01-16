@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 const store = createStore({
   state: {
     boardData: "",
+    boardContent: "",
     boardDate: "",
     boardNum: 0,
     boardReadCnt: 0,
@@ -22,6 +23,7 @@ const store = createStore({
         state.boardNum = data.board_num;
         state.boardReadCnt = data.board_read_cnt;
         state.boardTitle = data.board_title;
+        state.boardContent = data.board_content;
         state.regId = data.reg_id;
       }
     },
@@ -36,6 +38,17 @@ const store = createStore({
       state.modal_title = "게시판 등록";
       state.modal_tf = data;
       state.modalBoardInsert_tf = data;
+    },
+    // 모달 화면 크기
+    modalFull: function (state) {
+      if (state.modalFull == false) {
+        state.modalFull = true;
+      } else {
+        state.modalFull = false;
+      }
+    },
+    setBoardListCall: function (state, data) {
+      state.setBoardListCall = data;
     },
   },
 });

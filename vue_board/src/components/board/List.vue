@@ -24,14 +24,14 @@
 						<th role="columnheader" scope="col" class="text-center" style="width: 70px;">작성자</th>
 					</tr>
 				</thead>
-				<transition-group name="searchList" tag="tbody" class="table_item">
+				<tbody tag="tbody">
                     <tr role="row"  v-for="(item) in boardList" :key="item.board_num" style="cursor:pointer" @click="boardDetailPop(item.board_num)">
                         <td role="cell">{{item.board_title}}</td>
                         <td role="cell" class="text-center">{{item.board_date}}</td>
                         <td role="cell" class="text-center">{{item.board_read_cnt}}</td>
                         <td role="cell" class="text-center">{{item.reg_id}}</td>
 					</tr>
-				</transition-group>
+				</tbody>
 			</table>
 			<div>
 </div>
@@ -96,8 +96,14 @@
 			this.getBoardTotalCnt();
 			this.getBoardList(currentPage);
 		}, 
-		watch() {
-			
+		watch: {
+			"$store.state.setBoardListCall": function() {
+				if(this.$store.state.setBoardListCall == "Y"){
+						this.getBoardTotalCnt();
+						this.getBoardList();
+						this.$store.commit('setBoardListCall', "N");
+				}
+			}
 		}
 	}
 </script>
