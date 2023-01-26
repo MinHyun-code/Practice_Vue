@@ -50,6 +50,8 @@ const store = createStore({
     setBoardListCall: function (state, data) {
       state.setBoardListCall = data;
     },
+
+    
   },
 });
 

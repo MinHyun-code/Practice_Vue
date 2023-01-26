@@ -1,11 +1,9 @@
 <template>
-  <div id="app">
-    <router-view/>
+    <!-- <router-view/> -->
     <component :is="layout" ref="layout"/>
     <Modal v-if="this.$store.state.modal_tf">
       <Content/>
     </Modal>
-  </div>
 </template>
 
 <script>
@@ -35,10 +33,6 @@ export default {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     }
 
-    .table {
-      font-size: 12px;
-    }
-
   @keyframes fadeInLeft {
         0% {
             opacity: 0;
@@ -60,17 +54,4 @@ export default {
             transform: translate3d(-5%, 0, 0);
           }
   }
-
-  table tr{
-    animation: fadeInLeft 0.8s;
-  }
-
-  .btn {
-    margin-bottom: 3px;
-  }
-
-  .form-control {
-    width: 180px;
-  }
-
 </style>

@@ -1,17 +1,23 @@
 import { createWebHistory, createRouter } from "vue-router";
-import HelloWorld from "@/components/HelloWorld"; //메인 컴포넌트 호출
-import BoardList from "@/components/board/List"; //게시판 리스트 컴포넌트 호출
+import Login from "@/components/login/Login"; //메인 컴포넌트 호출
+import Main from "@/components/Main"; //메인 컴포넌트 호출
+import boardList from "@/components/board/BoardList"; //게시판 리스트 컴포넌트 호출
 
 const routes = [
   {
     path: "/",
-    name: HelloWorld,
-    component: HelloWorld,
+    name: Login,
+    component: Login,
   },
   {
-    path: "/board/list",
-    name: BoardList,
-    component: BoardList,
+    path: "/main",
+    name: Main,
+    component: Main,
+  },
+  {
+    path: "/boardList",
+    name: boardList,
+    component: boardList,
   },
 ];
 
