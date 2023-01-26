@@ -12,6 +12,8 @@ const store = createStore({
     modal_tf: false,
     modalBoardDetail_tf: false,
     modalBoardInsert_tf: false,
+    user_id: "",
+    login_tf: false,
   },
   computed: {},
   mutations: {
@@ -50,8 +52,46 @@ const store = createStore({
     setBoardListCall: function (state, data) {
       state.setBoardListCall = data;
     },
+    //===================================================== 로그인 / 로그아웃 =======================================================
+    // 로그인
+    setLoginProcess: function (state, data) {
+      state.user_id = data.user_id;
+      state.user_name = data.user_name;
+      state.login_tf = data.login_tf;
+    },
 
-    
+    // Storage에 state를 저장합니다.
+    saveStateToStorage(state) {
+      // localStorage.setItem("login.user_id", state.user_id);
+      // localStorage.setItem("login.user_name", state.user_name);
+      // localStorage.setItem("login.login_tf", state.login_tf);
+      localStorage.setItem("vue.login", JSON.stringify(state));
+    },
+
+    // 로그아웃
+    setLogoutProcess: function (state) {
+      state.user_id = "";
+      state.user_name = "";
+      state.login_tf = false;
+      // localStorage.removeItem("login.user_id");
+      // localStorage.removeItem("login.user_name");
+      // localStorage.removeItem("login.login_tf");
+      localStorage.removeItem("vue.login");
+    },
+
+    // Storage에서 state를 읽어옵니다.
+    readStateFromStorage(state) {
+      if (localStorage.getItem("vue.login") != null) {
+        let storage = JSON.parse(localStorage.getItem("vue.login"));
+        if (storage.login_tf != false) {
+          state.user_id = storage.user_id;
+          state.user_name = storage.user_name;
+          state.login_tf = storage.login_tf;
+        }
+      }
+    },
+
+    //===============================================================================================================================
   },
 });
 

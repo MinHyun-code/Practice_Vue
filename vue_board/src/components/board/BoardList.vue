@@ -1,13 +1,13 @@
 <template>
 	<div class="container-fluid">
 
-		<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+		<h1 class="h3 mb-2 text-gray-800">게시판</h1>
 		<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-			For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+			For more information about DataTables, please visit the </p>
 
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+				<h6 class="m-0 font-weight-bold text-primary">List</h6>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -53,7 +53,6 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12 col-md-5">
-								<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
 							</div>	
 							<b-pagination align="center" :total-rows="totalRows" v-model="currentPage" :per-page="10" v-on:click="getBoardList(currentPage)" style="margin-top: revert;"  v-show="noPage"/>
 						</div>

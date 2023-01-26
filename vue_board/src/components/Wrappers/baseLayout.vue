@@ -1,12 +1,19 @@
 <template>
-    <div id="wrapper">
-      <Sidebar/>
-      <div id="content-wrapper" class="d-flex flex-column">
-        <Header/>
-        <router-view/>
-        <Footer/>
+      <div v-if="this.$store.state.login_tf == false">
+        <div style="height: 100vh;">
+          <router-view/>
+        </div>
       </div>
-    </div>
+      <div v-if="this.$store.state.login_tf == true">
+        <div id="wrapper">
+          <Sidebar/>
+          <div id="content-wrapper" class="d-flex flex-column">
+            <Header/>
+            <router-view/>
+            <Footer/>
+          </div>
+        </div>
+      </div>
 </template>
 
 <script>

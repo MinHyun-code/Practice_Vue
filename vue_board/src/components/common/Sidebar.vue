@@ -2,7 +2,7 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<router-link class="sidebar-brand d-flex align-items-center justify-content-center" to="/">
+<router-link class="sidebar-brand d-flex align-items-center justify-content-center" to="/main">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
@@ -14,9 +14,9 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <router-link class="nav-link" to="/">
+    <router-link class="nav-link" to="/main">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span>
+        <span>&nbsp;&nbsp;대시보드</span>
     </router-link>
 </li>
 
@@ -52,7 +52,7 @@
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
+            <router-link to="/test">Colors</router-link>
             <a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>
@@ -68,25 +68,6 @@
     Addons
 </div>
 
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item active">
-    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Pages</span>
-    </a>
-    <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <router-link class="collapse-item" to="/">Login</router-link>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item active" href="blank.html">Blank Page</a>
-        </div>
-    </div>
-</li>
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
@@ -99,7 +80,7 @@
 <li class="nav-item">
     <router-link class="nav-link" to="/boardList">
         <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span>
+        <span>&nbsp;&nbsp;게시판</span>
     </router-link>
 </li>
 
@@ -114,7 +95,7 @@
 </ul>
 </template>
 <script>
+
 export default {
-	
 }
 </script>

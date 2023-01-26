@@ -45,9 +45,7 @@
                                             <a class="small" href="forgot-password.html">Forgot Password?</a>
                                         </div>
                                         <div class="text-center">
-                                            <router-link to="/join" class="small">
-                                                Create an Account!
-                                            </router-link>
+                                            <a class="small" href="register.html">Create an Account!</a>
                                         </div>
                                     </div>
                                 </div>
@@ -73,13 +71,8 @@ export default {
             form.append('user_id', this.user_id);
             form.append('user_pw', this.user_pw);
 
-            this.$axios.post('/api/login', form).then(res => {
-                if(res.data.login_tf == true){
-                    this.$store.commit('setLoginProcess', res.data);
-                    this.$store.commit('saveStateToStorage');
-                    this.$router.push('/main');
-                }
-                alert(res.data.message);
+            this.$axios.post('/api/join', form).then(res => {
+                console.log(res);
 			})
         }
     }

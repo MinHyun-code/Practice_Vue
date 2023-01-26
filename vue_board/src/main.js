@@ -19,4 +19,19 @@ app.use(store);
 app.use(Markdown);
 app.use(BootstrapVue3);
 app.component("default-layout", Default);
+
+// 페이지 이동 시 실행
+router.beforeEach(async (to, from, next) => {
+  store.commit("readStateFromStorage");
+  if (to.path != "/") {
+    if (store.state.login_tf == false) {
+      next("/");
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
 app.mount("#app");
