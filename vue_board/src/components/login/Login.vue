@@ -62,6 +62,7 @@
 
 
 <script>
+import { toast } from 'vue3-toastify';
 export default {
     data:() => ({
         user_id : "",
@@ -78,10 +79,18 @@ export default {
                     this.$store.commit('setLoginProcess', res.data);
                     this.$store.commit('saveStateToStorage');
                     this.$router.push('/main');
+                    toast.success(res.data.message);
+                } else {
+                    toast.error(res.data.message);
                 }
-                alert(res.data.message);
 			})
-        }
+        },
     }
 }
 </script>
+
+<style>
+  .c-toast--error {
+    background-color: rgb(212, 24, 24);
+  }  
+</style>

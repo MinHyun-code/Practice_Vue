@@ -4,6 +4,7 @@ import Join from "@/components/login/Join"; //회원가입 컴포넌트 호출
 import Main from "@/components/Main"; //메인 컴포넌트 호출
 import BoardList from "@/components/board/BoardList"; //게시판 리스트 컴포넌트 호출
 import Error_404 from "@/components/error/Error_404"; //404 에러 컴포넌트 호출
+import MyPage from "@/components/mypage/MyPage"; // 개인정보 컴포넌트 호출
 
 const routes = [
   {
@@ -33,6 +34,10 @@ const routes = [
   {
     path: "/Error_404",
     component: Error_404,
+  },
+  {
+    path: "/myPage",
+    component: MyPage,
   },
 ];
 
