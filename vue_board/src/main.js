@@ -28,7 +28,7 @@ app.component("default-layout", Default);
 // 페이지 이동 시 실행
 router.beforeEach(async (to, from, next) => {
   store.commit("readStateFromStorage");
-  if (to.path != "/") {
+  if (to.path != "/" && to.path != "/join") {
     if (store.state.login_tf == false) {
       next("/");
     } else {

@@ -20,7 +20,7 @@
                                                     placeholder="Enter Email Address...">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" v-model="user_pw" class="form-control form-control-user" placeholder="Password">
+                                                <input type="password" v-model="user_pw" class="form-control form-control-user" placeholder="Password" @keydown.enter="login()">
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">

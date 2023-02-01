@@ -20,6 +20,7 @@
     </div>
 
     <div v-if="this.$store.state.modalBoardInsert_tf">
+    <Hashtags/>
       <div style="width: 98%; margin: 2%">
         <h2>
           <input type="text" :value="boardTitle" @input="titleChange($event)" />
@@ -52,12 +53,14 @@
 
 <script>
 import Markdown from "vue3-markdown-it";
+import Hashtags from "@/components/hashtags/Hashtags";
 import MarkdownItStrikethroughAlt from "markdown-it-strikethrough-alt";
 
 export default {
   name: "Content",
   components: {
     Markdown,
+    Hashtags
   },
   computed: {
     storeBoardContent: function() {

@@ -39,6 +39,23 @@
 
 <script>
 export default {
+    data: () => ({
+        user_id: '',
+        user_pw: '',
+        user_type: '',
+        user_birth: '',
+        
+    }), 
+    methods: {
+        getUserInfo() {
+            this.$axios.get('/api/mypage/' + this.user_id).then(res => {
+                console.log(res.data);
+            })
+        }
+    }, 
+    mounted: {
+
+    }
 
 }
 </script>
