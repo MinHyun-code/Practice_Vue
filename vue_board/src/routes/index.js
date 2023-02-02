@@ -6,6 +6,8 @@ import BoardList from "@/components/board/BoardList"; //게시판 리스트 컴�
 import Error_404 from "@/components/error/Error_404"; //404 에러 컴포넌트 호출
 import MyPage from "@/components/info/MyPage"; // 개인정보 컴포넌트 호출
 import Setting from "@/components/info/Setting"; // 셋팅 컴포넌트 호출
+import Calendar from "@/components/calendar/Calendar"; // 캘린더 컴포넌트 호출
+import Memo from "@/components/calendar/Memo"; // 메모 컴포넌트 호출
 
 const routes = [
   {
@@ -37,6 +39,16 @@ const routes = [
     path: "/boardList",
     name: BoardList,
     component: BoardList,
+  },
+  {
+    path: "/calendar",
+    name: Calendar,
+    component: Calendar,
+  },
+  {
+    path: "/memo",
+    name: Memo,
+    component: Memo,
   },
   {
     path: "/:pathMatch(.*)*",

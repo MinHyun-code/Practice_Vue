@@ -1,6 +1,6 @@
 <template>
-  <!-- 전체화면 -->
-  <div class="modal fade show d-block" v-if="this.$store.state.modalFull" style="margin-top: 6%" >
+  <!-- 팝업화면 -->
+  <div class="modal fade show d-block" v-if="!this.$store.state.modalFull" style="margin-top: 6%" >
     <div class="modal-lg">
       <div class="overlay" @click="modalFalse()"></div>
       <div class="modal-card1">
@@ -8,8 +8,8 @@
       </div>
     </div>
   </div>
-  <!-- 팝업화면 -->
-  <div class="modal fade show d-block" v-if="!this.$store.state.modalFull" >
+  <!-- 전체화면 -->
+  <div class="modal fade show d-block" v-if="this.$store.state.modalFull" >
     <div class="modal-lg">
       <div class="modal-card2">
         <slot />

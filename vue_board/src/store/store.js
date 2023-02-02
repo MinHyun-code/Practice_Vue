@@ -14,6 +14,7 @@ const store = createStore({
     modalBoardInsert_tf: false,
     user_id: "",
     login_tf: false,
+    modalFull: false,
   },
   computed: {},
   mutations: {
@@ -31,13 +32,13 @@ const store = createStore({
     },
     // 게시판 상세 팝업 여부
     modalBoardDetail_TF: function (state, data) {
-      state.modal_title = "게시판 상세보기";
+      state.modal_title = "게시글 상세보기";
       state.modal_tf = data;
       state.modalBoardDetail_tf = data;
     },
     // 게시판 등록 팝업 여부
     modalBoardInsert_TF: function (state, data) {
-      state.modal_title = "게시판 등록";
+      state.modal_title = "게시글 등록";
       state.modal_tf = data;
       state.modalBoardInsert_tf = data;
     },

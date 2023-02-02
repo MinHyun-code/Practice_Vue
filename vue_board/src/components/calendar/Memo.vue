@@ -1,9 +1,8 @@
 <template>
 	<div class="container-fluid">
 
-		<h1 class="h3 mb-2 text-gray-800">설정</h1>
-		<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-			For more information about DataTables, please visit the </p>
+		<h1 class="h3 mb-2 text-gray-800">메모</h1>
+		<p class="mb-4">일정 > 메모</p>
 
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
@@ -39,6 +38,20 @@
 
 <script>
 export default {
+    data: () => ({
+        user_id: '',
+        user_pw: '',
+        user_type: '',
+        user_birth: '',
+        
+    }), 
+    methods: {
+        getUserInfo() {
+            this.$axios.get('/api/mypage/' + this.user_id).then(res => {
+                console.log(res.data);
+            })
+        }
+    }
 
 }
 </script>
@@ -47,4 +60,5 @@ export default {
     table th {
         width: 150px;
     }
+    
 </style>

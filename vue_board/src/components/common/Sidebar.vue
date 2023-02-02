@@ -25,20 +25,19 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-    Interface
+    개인
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
-        <span>Components</span>
+        <span>&nbsp;&nbsp;일정</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <router-link class="collapse-item" to="/Calendar">캘린더</router-link>
+            <router-link class="collapse-item" to="/Memo">메모</router-link>
         </div>
     </div>
 </li>
@@ -47,15 +46,12 @@
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
-        <span>Utilities</span>
+        <span>&nbsp;&nbsp;가계부</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <router-link to="/test">Colors</router-link>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="utilities-border.html">개인</a>
+            <a class="collapse-item" href="utilities-animation.html">모임</a>
         </div>
     </div>
 </li>
@@ -65,7 +61,7 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-    Addons
+    공용
 </div>
 
 
@@ -73,14 +69,14 @@
 <li class="nav-item">
     <a class="nav-link" href="charts.html">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span></a>
+        <span>&nbsp;&nbsp;맛집 추천</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
     <router-link class="nav-link" to="/boardList">
         <i class="fas fa-fw fa-table"></i>
-        <span>&nbsp;&nbsp;게시판</span>
+        <span>&nbsp;&nbsp;자유 게시판</span>
     </router-link>
 </li>
 

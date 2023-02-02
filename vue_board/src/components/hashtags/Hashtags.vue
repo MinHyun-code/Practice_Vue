@@ -161,14 +161,16 @@
   <style lang="scss" scoped>
   .comp_hashtag {
     position: relative;
-    width: 100%;
+    width: 47%;
     padding: 5px 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     min-height: 40px;
-    margin: 100px auto;
     text-align: left;
     box-sizing: border-box;
+    color: black;
+    margin-bottom: 1%;
+    margin-top: 2%;
   
     .noti {
       position: absolute;
@@ -261,8 +263,6 @@
       height: 30px;
       width: 150px;
       vertical-align: top;
-      font-family: "Noto Sans KR", "Malgun Gothic", "굴림", Gulim, "돋움", Dotum,
-        Sans-serif;
   
       &:before {
         display: inline;
@@ -286,8 +286,6 @@
         border: 0;
         outline: none;
         vertical-align: top;
-        font-family: "Noto Sans KR", "Malgun Gothic", "굴림", Gulim, "돋움", Dotum,
-          Sans-serif;
       }
     }
   }

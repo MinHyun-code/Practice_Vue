@@ -1,11 +1,9 @@
 <template>
 	<div class="container-fluid">
 
-		<h1 class="h3 mb-2 text-gray-800">게시판</h1>
-		<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-			For more information about DataTables, please visit the </p>
+		<h1 class="h3 mb-2 text-gray-800">자유 게시판</h1>
 
-		<div class="card shadow mb-4">
+		<div class="card shadow mb-4" style="margin-top: 27px;">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary"></h6>
 			</div>
@@ -48,7 +46,7 @@
 						</div>
 						<a href="#" class="btn btn-primary btn-icon-split" style="float: right; margin-right: 40px;" @click="boardInsertPop()">
 							<span class="icon text-white-50"><i class="fas fa-flag"></i></span>
-							<span class="text">등록</span>
+							<span class="text">작성</span>
 						</a>
 					</div>
 				</div>

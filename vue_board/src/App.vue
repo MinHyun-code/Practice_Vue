@@ -54,4 +54,12 @@ export default {
             transform: translate3d(-5%, 0, 0);
           }
   }
+
+  input, textarea {
+    border: 1px solid #ddd;
+  }
+
+  input, textarea {
+    border: 1px solid #ddd;
+  }
 </style>
