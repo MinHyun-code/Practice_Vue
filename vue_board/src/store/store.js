@@ -12,9 +12,11 @@ const store = createStore({
     modal_tf: false,
     modalBoardDetail_tf: false,
     modalBoardInsert_tf: false,
+    modalCalendarDetail_tf: false,
     user_id: "",
     login_tf: false,
     modalFull: false,
+    calendarData: "",
   },
   computed: {},
   mutations: {
@@ -30,6 +32,29 @@ const store = createStore({
         state.regId = data.reg_id;
       }
     },
+
+    // 일정 데이터 저장
+    setCalendarData: function (state, data) {
+      if (data != undefined) {
+        state.plan_title = data.plan_title;
+        state.plan_content = data.plan_content;
+        state.seq = data.seq;
+        state.plan_type = data.plan_type;
+        state.start = data.start;
+        state.end = data.end;
+        state.reg_user_id = data.reg_user_id;
+      }
+    },
+
+    setBoardListCall: function (state, data) {
+      state.setBoardListCall = data;
+    },
+    setPlanListCall: function (state, data) {
+      state.setPlanListCall = data;
+    },
+
+    //=========================================================== 모달 =======================================================
+
     // 게시판 상세 팝업 여부
     modalBoardDetail_TF: function (state, data) {
       state.modal_title = "게시글 상세보기";
@@ -42,6 +67,19 @@ const store = createStore({
       state.modal_tf = data;
       state.modalBoardInsert_tf = data;
     },
+    // 일정 상세 팝업 여부
+    modalCalendarDetail_TF: function (state, data) {
+      state.modal_title = "일정 상세";
+      state.modal_tf = data;
+      state.modalCalendarDetail_tf = data;
+    },
+    // 일정 등록 팝업 여부
+    modalCalendarInsert_TF: function (state, data) {
+      state.modal_title = "일정 등록";
+      state.modal_tf = data;
+      state.modalCalendarInsert_tf = data;
+    },
+
     // 모달 화면 크기
     modalFull: function (state) {
       if (state.modalFull == false) {
@@ -49,9 +87,6 @@ const store = createStore({
       } else {
         state.modalFull = false;
       }
-    },
-    setBoardListCall: function (state, data) {
-      state.setBoardListCall = data;
     },
     //===================================================== 로그인 / 로그아웃 =======================================================
     // 로그인

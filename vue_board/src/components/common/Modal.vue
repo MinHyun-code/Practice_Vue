@@ -29,7 +29,10 @@ export default {
     modalFalse() {
       this.$store.commit('modalBoardDetail_TF', false); 
       this.$store.commit('modalBoardInsert_TF', false); 
+      this.$store.commit('modalCalendarDetail_TF', false); 
+      this.$store.commit('modalCalendarInsert_TF', false); 
       this.$store.commit('setBoardData', '');
+      this.$store.commit('setCalendarData', '');
     }
   }
 }
@@ -55,7 +58,7 @@ export default {
   max-width: 60%;
   margin: auto;
   background-color: white;
-  min-height: 70vh;
+  min-height: 80vh;
   z-index: 10;
   opacity: 1;
   animation: fadeInLeft 0.8s;
