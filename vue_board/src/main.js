@@ -12,6 +12,8 @@ import "../public/css/sb-admin-2.min.css";
 import Default from "@/components/Wrappers/baseLayout.vue";
 import Vue3Toastify from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import Datepicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 
 const app = createApp(App);
 
@@ -24,7 +26,7 @@ app.use(Vue3Toastify, {
   autoClose: 1000,
 });
 app.component("default-layout", Default);
-
+app.component("Datepicker", Datepicker);
 // 페이지 이동 시 실행
 router.beforeEach(async (to, from, next) => {
   store.commit("readStateFromStorage");

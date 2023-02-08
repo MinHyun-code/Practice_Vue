@@ -80,9 +80,9 @@
         <div>
           <p style="font-size: 25px; font-weight: bold; margin: 2%;">{{this.$store.state.plan_title}}</p>
           <div style="margin: 2%;">
-            <table>
+            <table class="plan_tb">
               <tr>
-                <td>분류 : </td>
+                <th>분류 : </th>
                 <td>
                   <select v-model="planType">
                     <option value="" selected>선택</option>
@@ -91,21 +91,22 @@
                     <option value="3">기타</option>
                   </select>
                 </td>
+                <td rowspan="5"><img src="../../assets/images/vacation.png"/></td>
               </tr>
               <tr>
-                <td>제목 : </td>
+                <th>제목 : </th>
                 <td><input type="text" v-model="planTitle"/></td>
               </tr>
               <tr>
-                <td>시작일 : </td>
-                <td><datepicker v-model="planStart"></datepicker></td>
+                <th>시작일 : </th>
+                <td><datepicker format="yyyy-MM-dd HH:mm:ss" v-model="planStart"></datepicker></td>
               </tr>
               <tr>
-                <td>종료일 : </td>
-                <td><datepicker v-model="planEnd"></datepicker></td>
+                <th>종료일 : </th>
+                <td><datepicker format="yyyy-MM-dd HH:mm:ss" v-model="planEnd"></datepicker></td>
               </tr>
               <tr>
-                <td>사유 : </td>
+                <th>사유 : </th>
                 <td><input type="text" v-model="planContent"/></td>
               </tr>
             </table>
@@ -127,14 +128,12 @@
 import Markdown from "vue3-markdown-it";
 import Hashtags from "@/components/hashtags/Hashtags";
 import MarkdownItStrikethroughAlt from "markdown-it-strikethrough-alt";
-import Datepicker from 'vuejs3-datepicker';
 
 export default {
   name: "Content",
   components: {
     Markdown,
-    Hashtags,
-    Datepicker
+    Hashtags
   },
   computed: {
     storeBoardContent: function() {
@@ -181,7 +180,7 @@ export default {
       const form = new FormData();
       form.append("board_title", this.boardTitle);
       form.append("board_content", this.boardContent);
-      form.append("reg_id", "a");
+      form.append("reg_id", this.$store.state.user_id);
       this.$axios.post("/api/board/insert", form).then(() => {
         this.$store.commit("modalBoardDetail_TF", false);
         this.$store.commit("modalBoardInsert_TF", false);
@@ -209,14 +208,32 @@ export default {
       const form = new FormData();
       form.append("planTitle", this.planTitle);
       form.append("planContent", this.planContent);
-      form.append("planStart", this.planStart);
-      form.append("planEnd", this.planEnd);
+      form.append("planType", this.planType);
+      form.append("planStart", this.dateFormat(this.planStart));
+      form.append("planEnd",  this.dateFormat(this.planEnd));
       form.append("regUserId", this.$store.state.user_id);
       this.$axios.post("api/plan/insert", form).then(() => {
         this.modalFalse();
         this.$store.commit('setPlanListCall', "Y");
       })
-    }
+    },
+
+    // 날짜 FORMAT 변경
+    dateFormat(date) {
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+
+        month = month >= 10 ? month : '0' + month;
+        day = day >= 10 ? day : '0' + day;
+        hour = hour >= 10 ? hour : '0' + hour;
+        minute = minute >= 10 ? minute : '0' + minute;
+        second = second >= 10 ? second : '0' + second;
+
+        return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+}
   },
   mounted(){
         this.boardContent = this.$store.state.boardContent;
@@ -253,4 +270,24 @@ export default {
   font-weight: 900;
   cursor: pointer;
 }
+
+.plan_tb {
+  margin-top: 65px;
+  height: 50vh;
+}
+
+.plan_tb th {
+  width: 80px;
+}
+
+input {
+  width: 380px;
+  line-height: 30px;
+}
+
+select {
+  width: 380px;
+  height: 35px;
+}
+
 </style>
